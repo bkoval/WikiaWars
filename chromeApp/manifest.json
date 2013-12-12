@@ -1,0 +1,12 @@
+{
+  "name": "WikiaWars",
+  "description": "App for playing WikiaWars",
+  "version": "0.1",
+  "app": {
+    "background": {
+      	"scripts": ["js/background.js"]
+    },
+    "permissions": ["webview", "http://10.10.10.111:8080/"]
+  },
+  "permissions": ["webview", "http://10.10.10.111:8080/"]
+}
