@@ -4,16 +4,23 @@
 	<head>
 
 		<title>WikiaWars</title>
-  	
+  		<link rel='stylesheet' href='main.css'>
   	</head>
 
   	<body>
 
-    	<div>Hello, world!</div>
-    	<webview id="foo" src="http://www.fallout.wikia.com/" style="min-width:640px; min-height:480px; width:100%"></webview>
-  	
+    	<h1 class ='title'>Hello, world!</h1>
+    	<webview id="foo" src="http://www.glee.wikia.com/wiki/Rachel_Berry?action=render" style="min-width:800px; min-height:480px; width:100%"></webview>
+    	<button id='goBack'>Go Back</button>
+    	<div id='toast'></div>
+
+    	<ul id='msgWall'></ul>
+
+  		<script src='reqwest.js'></script>  	
   		<script src='require.js'></script>
   		<script src='skinController.js'></script>
+  		<script src='gameController.js'></script>
+  		<script src='messageWall.js'></script>
   		<script src='main.js'></script>
   	</body>
 
