@@ -3,22 +3,22 @@ define( 'messageWall',[], function(){
 	var wall = document.getElementById( 'msgWall' );
 	var toast = document.getElementById( 'toast' );
 
-	var messages = {
-		"click" : "You just clicked a link",
-		"error" : "An error occured"
-	}
-
-	function show( messageType ){
-		wall.innerHTML = '<li>' + messages[messageType] + '</li>' + wall.innerHTML;
-		toast.innerHTML = messages[messageType];
-		toast.style.display = 'block';
+	function show( message ){
+		wall.innerHTML = '<li>' + message + '</li>' + wall.innerHTML;
+		toast.innerHTML = message;
+		toast.classList.add('on');
 		setTimeout( function(){
 
-			toast.style.display = '';
+			toast.classList.remove('on')
 		}, 2000 );
 	}
 
+	function clear(){
+		wall.innerHTML = '';
+	}
+
 	return{
-		show: show
+		show: show,
+		clear: clear
 	}
 } );

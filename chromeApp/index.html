@@ -4,20 +4,53 @@
 	<head>
 
 		<title>WikiaWars</title>
-  		<link rel='stylesheet' href='css/main.css'>
+  		<link rel='stylesheet' href='css/bootstrap.css'>
+      <link rel='stylesheet' href='css/main.css'>
+      <script src='js/microajax.minified.js'></script>    
+      <script src='js/require.js'></script>
   	</head>
 
   	<body>
 
-    	<h1 class ='title'>Hello, world!</h1>
-    	<webview id="foo" src="http://www.glee.wikia.com/wiki/Rachel_Berry" style="min-width:800px; min-height:480px; width:100%"></webview>
-    	<button id='goBack'>Go Back</button>
-    	<div id='toast'></div>
+  <nav class="navbar navbar-inverse" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">WikiaWars 0.1</a>
+  </div>
+   <h2 id='articles'></h2>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li><button id='resetGame' class='btn btn-default'>New Game</button></li>
+      <li><button href="#" class='btn btn-info' id='goBack'>Go Back</button></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+    <div class='wrapper'>
+    	<webview id="foo" class='webv'> 
+      </webview>
+      </div>
+    	<div id='toast' class='alert alert-success'></div>
 
     	<ul id='msgWall'></ul>
 
-  		<script src='js/reqwest.js'></script>  	
-  		<script src='js/require.js'></script>
+      <div id='curtain'>
+      </div>
+      <div id='scoreBox'>
+          
+        </div>
+
   		<script src='js/skinController.js'></script>
   		<script src='js/gameController.js'></script>
   		<script src='js/messageWall.js'></script>

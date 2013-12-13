@@ -11,18 +11,31 @@ body{
 
 #toast{
 	position: fixed;
-	right:20%;
-	top:20%;
-	color:#fff;
-	background-color:blue;
-	padding:20px;
-	display:none;
+	right:150%;
+	top:10%;
+	font-size:15px;
+	box-shadow: 11px 11px 18px rgba(0, 0, 0, 0.4);
+
+	visibility:hidden;
+}
+
+#toast.on{
+	right:10%;
+	visibility:visible;
+}
+
+#toast h4{
+	color:#f3f3f3;
 }
 
 #msgWall{
 	display:block;
 	width:100%;;
+	padding-left:0px;
+	font-size:13px;
+}
 
+#msgWall b{
 	font-weight:bold;
 }
 
@@ -35,3 +48,109 @@ body{
 #msgWall li:first-child{
 	background-color:#0E72AE;
 }
+
+.wrapper{
+	height:480px;
+	width:100%;
+}
+
+.loader{
+	height: 200px;
+	width: 200px;
+}
+
+.splashScreen{
+	text-align:center;
+	margin:0 auto;
+	margin-top:10%;
+}
+
+.starter{
+	margin: 80px;
+}
+
+.navbar{
+	margin-bottom: 0px;
+}
+
+.webv{
+	min-height:480px;
+	width:100%;
+	height:100%;
+}
+
+#articles{
+	text-align:center;
+}
+
+#newGame{
+	margin-top:60px;
+}
+
+#newGame.on{
+	display:block;
+}
+
+#curtain{
+	position: fixed;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(255,255,255,0.8);
+	display: none;
+	z-index:100;
+}
+
+#curtain.on, #scoreBox.on{
+	display:block;
+}
+
+#scoreBox{
+	position:fixed;
+	display:none;
+	left:0;
+	top: 30%;
+	z-index:101;
+	width:100%;
+	height:100%;
+	text-align:center;
+	color:#000;
+}
+
+#scoreBox img{
+	padding-top:30px;
+}
+
+#scoreBox h4{
+	max-width: 700px;
+	color: #888a8c;
+	margin:0 auto;
+	font-weight: bold;
+	padding: 30px;
+}
+
+#scoreBox button{
+	margin: 30px auto 0 auto;
+	display:block;
+}
+
+.throbber{
+	background-image:url('../img/ajax-loader.gif');
+	background-repeat: no-repeat;
+	background-position:center;
+	margin:0 auto;
+	width:70px;
+	height: 70px;
+}
+
+*{
+	transition: all 0.5s ease-in;
+}
+
+.navbar-inverse{
+	background-color: #002E54;
+	color:#fff;
+}
+
+
