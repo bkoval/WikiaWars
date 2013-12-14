@@ -94,7 +94,7 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 		});
 		curtain.classList.add('on');
 		scoreBox.classList.add('on');
-		scoreBox.innerHTML = "<div class='throbber'></div><img class='starting-logo' src='img/logo.png'>"+"<button class='btn btn-lg btn-info' id='newGame'>Play</button>"+rules;
+		scoreBox.innerHTML = "<img class='starting-logo' src='img/logo.png'>"+"<button class='btn btn-lg btn-info' id='newGame'>Play Now!</button>"+rules;
 		document.addEventListener('click', function(){
 			if(event.target.id === 'newGame' || event.target.id === 'resetGame'){
 					if(event.target.id === 'newGame'){
