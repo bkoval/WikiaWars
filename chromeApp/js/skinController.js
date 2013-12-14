@@ -3,7 +3,7 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 	var webv = document.getElementById('foo');
 	var goBack = document.getElementById('goBack');
 	var wrapper = webv.parentElement;
-	var url = 'http://10.10.10.111:8080';
+	var url = 'http://localhost:8080';
 	var startPage;
 	var startTitle;
 	var endPage;
