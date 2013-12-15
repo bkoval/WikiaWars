@@ -1,4 +1,4 @@
-define('skinController', ['gameController', 'messageWall'], function(gameController, messageWall){
+define('skinController', ['gameController', 'messageWall', 'templates'], function(gameController, messageWall, templates){
 
 	var webv = document.getElementById('foo');
 	var goBack = document.getElementById('goBack');
@@ -17,19 +17,20 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 	var webviewReady = false;
 	var startTime;
 	var endTime;
-	var rules = '<h4>Both time and number of clicks matter! Remember - You\'ll be able to click only on article links!</h4>';
 
+	//Wrapper for killing UI events
 	function kill(){
 		event.preventDefault();
 		event.stopPropagation();
 	}
 
+	//Gets JSON from server and initializes webview if ok
 	function init(){
 		microAjax(url, function (data) {
   			if(!data){
   				curtain.classList.add('on');
 				scoreBox.classList.add('on');
-				scoreBox.innerHTML = "<h3>There seems to be a connection / server error.</h3><button class='btn btn-lg btn-info' id='newGame'>Try Again</button>";
+				scoreBox.innerHTML = templates.connectionError;
   			}
   			res = JSON.parse(data);
   			startPage = res.article1.url;
@@ -52,27 +53,27 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 			webv.addEventListener('loadstop', function() {
 			});
 			webv.addEventListener('loadstart', function(){
-				if( event.isTopLevel && !firstLoad /*&& event.url.match('wikia.com')*/){
-					gameController.clickCounter++;
+				if( event.isTopLevel && !firstLoad && event.url.indexOf('wikia.com') != -1){
+					gameController.addClick();
 					webv.style.visibility = 'hidden';
-					messageWall.show( gameController.clickCounter + ' clicks so far!');
+					messageWall.show( gameController.getClicks() + ' clicks so far!');
 					if( event.url.indexOf(endPage) != -1 ){
+						gameController.stopClock();
 						endTime = new Date().getTime();
 						var seconds = (endTime - startTime) / 1000;
-						var result = 'You won the game with ' + gameController.clickCounter + ' clicks in ' + seconds + ' seconds!';
-						messageWall.show(result);
-						scoreBox.innerHTML = '<h2>' + result + '</h2>' + "<button class='btn btn-lg btn-info' id='newGame'>Play Again</button>";
+						scoreBox.innerHTML = templates.endGameScreen(gameController.getClicks(), seconds);
 						scoreBox.classList.add('on');
 						curtain.classList.add('on');
 					}
 				}
-				//if(!event.url.match('wikia.com')){
-				//	webv.go( -1 );
-				//}
+				if(event.isTopLevel && !firstLoad && event.url.indexOf('wikia.com') === -1){
+					webv.go( -1 );
+				}
 				else{
-					if(firstLoad){
+					if(firstLoad && event.isTopLevel){
 						firstLoad = false;
 						startTime = new Date().getTime();
+						gameController.startClock();
 					}	
 				}
 			});
@@ -86,14 +87,14 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 				webv.go( -1 );
 			}
 			messageWall.show('You went back. Still counts as a click! Current Score: ' + 
-					gameController.clickCounter + ' clicks.');
+					gameController.getClicks() + ' clicks.');
 		} );
 	}
 
 	function startGame(){
 		curtain.classList.add('on');
 		scoreBox.classList.add('on');
-		scoreBox.innerHTML = "<img class='starting-logo' src='img/logo.png'>"+"<button class='btn btn-lg btn-info' id='newGame'>Play Now!</button>";
+		scoreBox.innerHTML = templates.landingScreen;
 		document.addEventListener('click', function(){
 			if(event.target.id === 'newGame' || event.target.id === 'resetGame'){
 					if(event.target.id === 'newGame'){
@@ -104,7 +105,7 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 					startPage = undefined;
 					endPage = undefined;
 					messageWall.clear();
-					gameController.clickCounter = 0;
+					gameController.clearClicks();
 					artHeader.innerText = '';
 					init();
 			}

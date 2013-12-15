@@ -5,41 +5,56 @@
 
 		<title>WikiaWars</title>
   		<link rel='stylesheet' href='css/bootstrap.css'>
-      <link rel='stylesheet' href='css/main.css'>
-      <script src='js/microajax.minified.js'></script>    
-      <script src='js/require.js'></script>
+        <link rel='stylesheet' href='css/main.css'>
+        <script src='js/microajax.minified.js'></script>    
+        <script src='js/require.js'></script>
+
   	</head>
 
   	<body>
 
-    <nav id='topBar'>
-        <div id='logo'></div>
-        <h2 id='articles'></h2>
-        <div id='actions'>
-          <button id='resetGame' class='button dark'>New Game</button>
-          <button href="#" class='button light' id='goBack'>Go Back</button>
+        <nav id='topBar'>
+
+            <div id='logo'></div>
+            <h2 id='articles'></h2>
+            <div id='actions'>
+
+                <button id='resetGame' class='button dark'>New Game</button>
+                <button href="#" class='button light' id='goBack'>Go Back</button>
+
+            </div>
+
+        </nav>
+
+
+        <div class='wrapper'>
+        	
+            <webview id="foo" class='webv'></webview>
+
         </div>
-    </nav>
+        
+        <div id='toast' class='alert alert-success'></div>
 
+        <ul id='msgWall'></ul>
 
-    <div class='wrapper'>
-    	<webview id="foo" class='webv'> 
-      </webview>
-      </div>
-    	<div id='toast' class='alert alert-success'></div>
+        <div id='curtain'></div>
+        
+        <div id='scoreBox'></div>
+        
+        <div class='stats'>
 
-    	<ul id='msgWall'></ul>
+            <h1 id='clock'><b>0</b> seconds</h1>
 
-      <div id='curtain'>
-      </div>
-      <div id='scoreBox'>
-          
+            <h1 id='clicks'><b>0</b> clicks</h1>
+
         </div>
 
-  		<script src='js/skinController.js'></script>
-  		<script src='js/gameController.js'></script>
-  		<script src='js/messageWall.js'></script>
-  		<script src='js/main.js'></script>
+    	<script src='js/skinController.js'></script>
+    	<script src='js/gameController.js'></script>
+    	<script src='js/messageWall.js'></script>
+        <script src='js/templates.js'></script>
+    	<script src='js/main.js'></script>
+
   	</body>
 
 </html>
