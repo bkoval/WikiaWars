@@ -13,14 +13,14 @@ body{
 	position: fixed;
 	right:150%;
 	top:10%;
-	font-size:15px;
+	font-size:20px;
+	padding:50px;
 	box-shadow: 11px 11px 18px rgba(0, 0, 0, 0.4);
-
 	visibility:hidden;
 }
 
 #toast.on{
-	right:10%;
+	right:20%;
 	visibility:visible;
 }
 
@@ -50,8 +50,9 @@ body{
 }
 
 .wrapper{
-	height:480px;
+	height:90%;
 	width:100%;
+	margin: 0;
 }
 
 .loader{
@@ -73,10 +74,21 @@ body{
 	margin-bottom: 0px;
 }
 
+#logo{
+	background-image:url('../img/topBarLogo.png');
+	background-repeat: no-repeat;
+	background-position:center;
+	background-size:25%;
+	margin-left:0px;
+	width: 29%;
+	height:100%;
+	display:inline-block;
+}
+
 .webv{
-	min-height:480px;
 	width:100%;
 	height:100%;
+	visibility: visible;
 }
 
 #articles{
@@ -138,22 +150,84 @@ body{
 	padding: 15px 28px;
 }
 
+#scoreBox button:hover{
+	background-color: white;
+	padding: 15px 50px;
+	color:#0c4c88;
+}
+
+.button{
+	background-color: #0c4c88;
+	padding: 10px 15px;
+	color: #fff;
+	font-size: 15px;
+	border: none;
+	border-radius: 5px;
+}
+
+.button:hover{
+	color: #0c4c88;
+	background-color:#fff;
+}
+
 .throbber{
 	background-image:url('../img/ajax-loader.gif');
 	background-repeat: no-repeat;
 	background-position:center;
 	margin:0 auto;
-	width:70px;
-	height: 70px;
+	width:100%;
+	height:100%;
 }
 
 *{
 	transition: all 0.5s ease-in;
 }
 
-.navbar-inverse{
+#topBar{
+	width:100%;
+	box-sizing: border-box;
 	background-color: #002E54;
 	color:#fff;
+	height:70px;
+	overflow: hidden;
+	margin: 0;
 }
+
+#topBar h2{
+	margin: 0;
+	padding: 25px;
+	line-height: 20px;
+	font-size: 20px;
+	vertical-align: top;
+	font-weight: bold;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 40%;
+}
+
+#topBar b{
+	font-weight: regular;
+}
+
+html, body{
+	margin: 0;
+	height: 100%;
+}
+
+.starting-logo{
+	margin-bottom: 60px;
+}
+
+#actions{
+	height: 100%;
+	vertical-align: top;
+	margin-top: 20px;
+	text-align: right;
+	padding-right: 20px;
+	width: 30%;
+	display: inline-block;
+}
+
+
 
 

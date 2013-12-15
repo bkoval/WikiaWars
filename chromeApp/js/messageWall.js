@@ -10,7 +10,7 @@ define( 'messageWall',[], function(){
 		setTimeout( function(){
 
 			toast.classList.remove('on')
-		}, 2000 );
+		}, 4000 );
 	}
 
 	function clear(){

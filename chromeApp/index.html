@@ -12,30 +12,15 @@
 
   	<body>
 
-  <nav class="navbar navbar-inverse" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">WikiaWars 0.1</a>
-  </div>
-   <h2 id='articles'></h2>
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right">
-      <li><button id='resetGame' class='btn btn-default'>New Game</button></li>
-      <li><button href="#" class='btn btn-info' id='goBack'>Go Back</button></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+    <nav id='topBar'>
+        <div id='logo'></div>
+        <h2 id='articles'></h2>
+        <div id='actions'>
+          <button id='resetGame' class='button dark'>New Game</button>
+          <button href="#" class='button light' id='goBack'>Go Back</button>
+        </div>
+    </nav>
+
 
     <div class='wrapper'>
     	<webview id="foo" class='webv'> 

@@ -37,27 +37,25 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
   			endPage = res.article2.url;
   			endTitle = res.article2.name;
   			webv.setAttribute('src', startPage);
-  			artHeader.innerHTML = '<b>' + startTitle + '</b> --> <b>' + endTitle + '</b>';
+  			artHeader.innerHTML = '<b>' + startTitle + '</b> &rarr; <b>' + endTitle + '</b>';
   			handleWebv();
 		});
 	}
 
 	function handleWebv(){
 		if(!webviewReady){
+			wrapper.classList.add('throbber');
 			webv.addEventListener('contentload', function() { 			
 	  			webv.executeScript({ "file": "js/webviewController.js" });
+	  			webv.style.visibility='';
 			});
-			webv.addEventListener('loadstop', function() { 			
-	  			webv.style.height='';
-	  			wrapper.classList.remove('loading');
+			webv.addEventListener('loadstop', function() {
 			});
 			webv.addEventListener('loadstart', function(){
-				if( event.isTopLevel && !firstLoad ){
+				if( event.isTopLevel && !firstLoad /*&& event.url.match('wikia.com')*/){
 					gameController.clickCounter++;
-					webv.style.height='0px';
-					wrapper.classList.add('loading');
-					messageWall.show('You clicked a link to <b>' + event.url + '</b>. Current Score: ' + 
-						gameController.clickCounter + ' clicks.');
+					webv.style.visibility = 'hidden';
+					messageWall.show( gameController.clickCounter + ' clicks so far!');
 					if( event.url.indexOf(endPage) != -1 ){
 						endTime = new Date().getTime();
 						var seconds = (endTime - startTime) / 1000;
@@ -68,12 +66,17 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 						curtain.classList.add('on');
 					}
 				}
-				if(firstLoad) {
-					firstLoad = false;
-					startTime = new Date().getTime();
+				//if(!event.url.match('wikia.com')){
+				//	webv.go( -1 );
+				//}
+				else{
+					if(firstLoad){
+						firstLoad = false;
+						startTime = new Date().getTime();
+					}	
 				}
 			});
-			if(!webviewReady) webviewReady = true;
+			webviewReady = true;
 			
 		}
 
@@ -88,13 +91,9 @@ define('skinController', ['gameController', 'messageWall'], function(gameControl
 	}
 
 	function startGame(){
-		wrapper.style.height = (window.innerHeight - document.getElementsByClassName('navbar')[0].offsetHeight - 50) + 'px';
-		window.addEventListener('resize', function(){
-			wrapper.style.height = (window.innerHeight - document.getElementsByClassName('navbar')[0].offsetHeight - 50) + 'px';
-		});
 		curtain.classList.add('on');
 		scoreBox.classList.add('on');
-		scoreBox.innerHTML = "<img class='starting-logo' src='img/logo.png'>"+"<button class='btn btn-lg btn-info' id='newGame'>Play Now!</button>"+rules;
+		scoreBox.innerHTML = "<img class='starting-logo' src='img/logo.png'>"+"<button class='btn btn-lg btn-info' id='newGame'>Play Now!</button>";
 		document.addEventListener('click', function(){
 			if(event.target.id === 'newGame' || event.target.id === 'resetGame'){
 					if(event.target.id === 'newGame'){

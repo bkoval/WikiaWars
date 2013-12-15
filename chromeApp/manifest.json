@@ -6,7 +6,7 @@
     "background": {
       	"scripts": ["js/background.js"]
     },
-    "permissions": ["webview", "http://10.10.10.111:8080/"]
+    "permissions": ["webview", "http://localhost:8080/"]
   },
-  "permissions": ["webview", "http://10.10.10.111:8080/"]
+  "permissions": ["webview", "http://localhost:8080/"]
 }

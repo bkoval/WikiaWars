@@ -7,17 +7,7 @@ define( 'gameController', ['messageWall'], function(messageWall){
 	function addLog( clickedEl ){
 
 			log.push( 'Clicked ' + clickedEl.getAttribute( 'href' ) );
-	}
-
-	function register( event ){
-		
-		if( event.target.tagName === 'A' ){
-
-			addLog( event.Target );
-			clickCounter++;
-			messageWall.show( 'click' );
-		}
-	}
+	}	
 
 	function start(){
 		microAjax(url, function (res) {
@@ -29,7 +19,6 @@ define( 'gameController', ['messageWall'], function(messageWall){
 
 	return{
 		start : start,
-		register : register,
 		clickCounter : clickCounter
 	}
 
