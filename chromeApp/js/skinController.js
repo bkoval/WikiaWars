@@ -17,11 +17,16 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 	var webviewReady = false;
 	var startTime;
 	var endTime;
+	var enableBack = false;
 
 	//Wrapper for killing UI events
 	function kill(){
 		event.preventDefault();
 		event.stopPropagation();
+	}
+
+	function resizeWebv(){
+		wrapper.style.height = (window.innerHeight - 70) + 'px';
 	}
 
 	//Gets JSON from server and initializes webview if ok
@@ -54,6 +59,7 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 			});
 			webv.addEventListener('loadstart', function(){
 				if( event.isTopLevel && !firstLoad && event.url.indexOf('wikia.com') != -1){
+					enableBack = true;
 					gameController.addClick();
 					webv.style.visibility = 'hidden';
 					messageWall.show( gameController.getClicks() + ' clicks so far!');
@@ -83,15 +89,17 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 
 		goBack.addEventListener( 'click', function(){
 			event.preventDefault();
-			if( webv.canGoBack() ){
+			if( webv.canGoBack() && enableBack ){
 				webv.go( -1 );
 			}
-			messageWall.show('You went back. Still counts as a click! Current Score: ' + 
-					gameController.getClicks() + ' clicks.');
 		} );
 	}
 
 	function startGame(){
+		resizeWebv();
+		window.addEventListener('resize', function(){
+			resizeWebv();
+		});
 		curtain.classList.add('on');
 		scoreBox.classList.add('on');
 		scoreBox.innerHTML = templates.landingScreen;
@@ -104,10 +112,17 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 					firstLoad = true;
 					startPage = undefined;
 					endPage = undefined;
+					enableBack = false;
 					messageWall.clear();
 					gameController.clearClicks();
 					artHeader.innerText = '';
 					init();
+			}
+			if(event.target.id === 'rulesButton'){
+				scoreBox.innerHTML = templates.rulesScreen;
+			}
+			if(event.target.id === 'toMainMenu'){
+				scoreBox.innerHTML = templates.landingScreen;
 			}
 		});
 

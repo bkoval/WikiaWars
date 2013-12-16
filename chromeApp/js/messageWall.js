@@ -5,12 +5,6 @@ define( 'messageWall',[], function(){
 
 	function show( message ){
 		wall.innerHTML = '<li>' + message + '</li>' + wall.innerHTML;
-		toast.innerHTML = message;
-		toast.classList.add('on');
-		setTimeout( function(){
-
-			toast.classList.remove('on')
-		}, 4000 );
 	}
 
 	function clear(){
