@@ -3,7 +3,7 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 	var webv = document.getElementById('foo');
 	var goBack = document.getElementById('goBack');
 	var wrapper = webv.parentElement;
-	var url = 'http://localhost:8080';
+	var url = 'http://alistra.wikia-dev.com/';
 	var startPage;
 	var startTitle;
 	var endPage;
@@ -50,7 +50,6 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 
 	function handleWebv(){
 		if(!webviewReady){
-			wrapper.classList.add('throbber');
 			webv.addEventListener('contentload', function() { 			
 	  			webv.executeScript({ "file": "js/webviewController.js" });
 	  			webv.style.visibility='';
@@ -73,7 +72,7 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 					}
 				}
 				if(event.isTopLevel && !firstLoad && event.url.indexOf('wikia.com') === -1){
-					webv.go( -1 );
+					webv.back();
 				}
 				else{
 					if(firstLoad && event.isTopLevel){
@@ -83,16 +82,14 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 					}	
 				}
 			});
+			goBack.addEventListener( 'click', function(){
+				event.preventDefault();
+				if( webv.canGoBack() && enableBack ){
+					webv.back();
+				}
+			} );
 			webviewReady = true;
-			
 		}
-
-		goBack.addEventListener( 'click', function(){
-			event.preventDefault();
-			if( webv.canGoBack() && enableBack ){
-				webv.go( -1 );
-			}
-		} );
 	}
 
 	function startGame(){
