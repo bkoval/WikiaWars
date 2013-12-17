@@ -1,4 +1,4 @@
-define('skinController', ['gameController', 'messageWall', 'templates'], function(gameController, messageWall, templates){
+define('skinController', ['gameController', 'templates'], function(gameController, templates){
 
 	var webv = document.getElementById('foo');
 	var goBack = document.getElementById('goBack');
@@ -61,7 +61,6 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 					enableBack = true;
 					gameController.addClick();
 					webv.style.visibility = 'hidden';
-					messageWall.show( gameController.getClicks() + ' clicks so far!');
 					if( event.url.indexOf(endPage) != -1 ){
 						gameController.stopClock();
 						endTime = new Date().getTime();
@@ -110,7 +109,6 @@ define('skinController', ['gameController', 'messageWall', 'templates'], functio
 					startPage = undefined;
 					endPage = undefined;
 					enableBack = false;
-					messageWall.clear();
 					gameController.clearClicks();
 					artHeader.innerText = '';
 					init();

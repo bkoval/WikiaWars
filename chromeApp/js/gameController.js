@@ -12,7 +12,7 @@ define( 'gameController', ['messageWall'], function(messageWall){
 	function onTick(){
 		var time = new Date().getTime();
 		clock.innerText = Math.floor((time - startTime)/1000);
-		if(clockOn) setTimeout(onTick, 500)
+		if(clockOn) setTimeout(onTick, 500);
 	}
 
 	function stopClock(){
