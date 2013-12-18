@@ -1,3 +1,9 @@
+/**
+ * Module for handling webview and looks of the app
+ * 
+ * @author Bartłomiej Kowalczyk brt.kowal@gmail.com
+ */
+
 define('skinController', ['gameController', 'templates'], function(gameController, templates){
 
 	var webv = document.getElementById('foo');
@@ -25,11 +31,12 @@ define('skinController', ['gameController', 'templates'], function(gameControlle
 		event.stopPropagation();
 	}
 
+	//ToDo -> css way to make it responsive
 	function resizeWebv(){
 		wrapper.style.height = (window.innerHeight - 70) + 'px';
 	}
 
-	//Gets JSON from server and initializes webview if ok
+	//Gets JSON from server and initializes webview and title bar if ok
 	function init(){
 		microAjax(url, function (data) {
   			if(!data){
@@ -48,6 +55,7 @@ define('skinController', ['gameController', 'templates'], function(gameControlle
 		});
 	}
 
+	//Communicates with webview (js injection, catching load events)
 	function handleWebv(){
 		if(!webviewReady){
 			webv.addEventListener('contentload', function() { 			
@@ -91,6 +99,7 @@ define('skinController', ['gameController', 'templates'], function(gameControlle
 		}
 	}
 
+	//Blanks the state of the game and initializes the JSON get process
 	function startGame(){
 		resizeWebv();
 		window.addEventListener('resize', function(){

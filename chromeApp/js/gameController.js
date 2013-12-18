@@ -1,3 +1,9 @@
+/**
+ * Module for handling the game state and the clock
+ * 
+ * @author Bartłomiej Kowalczyk brt.kowal@gmail.com
+ */
+
 define( 'gameController', ['messageWall'], function(messageWall){
 
 	var log = []
